@@ -2,11 +2,13 @@
   "name": "web",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "format": "prettier --write .",
+    "lint": "eslint ."
   },
   "dependencies": {
     "next": "16.0.3",
@@ -15,14 +17,22 @@
     "react-dom": "^18"
   },
   "devDependencies": {
-    "@siberiacancode/eslint": "^2.13.0",
-    "@siberiacancode/prettier": "^1.4.0",
-    "@siberiacancode/stylelint": "^1.2.0",
+    "@eslint/js": "^9.39.1",
+    "@evilmartians/lefthook": "^2.0.4",
+    "@ianvs/prettier-plugin-sort-imports": "^4.7.0",
     "@tailwindcss/postcss": "^4.1.17",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "eslint": "^9.39.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.4.24",
+    "globals": "^16.5.0",
+    "prettier": "^3.6.2",
+    "prettier-plugin-organize-attributes": "^1.0.0",
     "tailwindcss": "^4.1.17",
-    "typescript": "^5"
+    "typescript": "^5",
+    "typescript-eslint": "^8.46.4"
   }
 }

@@ -1,4 +1,4 @@
-import "./styles/globals.css";
+import './styles/globals.css';
 
 const RootLayout = ({
   children,
@@ -6,7 +6,7 @@ const RootLayout = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <html lang="ru">
+    <html lang='ru'>
       <body>{children}</body>
     </html>
   );
