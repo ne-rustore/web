@@ -1,63 +1,75 @@
-import type { App } from '@/widgets/TopApps/model/topApps';
+'use client';
 
-import Image from 'next/image';
+import { useState } from 'react';
 import Link from 'next/link';
 
-import { Star } from 'lucide-react';
+interface AppCardProps {
+  id: string;
+  title: string;
+  description: string;
+  rating: number;
+  image: string;
+  badge?: string;
+  categories: string[];
+}
 
-export const AppCard = ({
+export function AppCard({
   id,
   title,
   description,
   rating,
-  badge,
-  image
-}: App) => {
+  image,
+  badge
+}: AppCardProps) {
+  const [imageError, setImageError] = useState(false);
+
   return (
-    <Link
-      href={`/app/${id}`}
-      className='group flex gap-3 p-3 rounded-xl bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors'
-    >
-      <div className='shrink-0'>
-        <div className='w-14 h-14 rounded-xl shadow-sm overflow-hidden bg-white p-1'>
-          <Image
-            src={image}
-            alt={title}
-            width={56}
-            height={56}
-            className='w-full h-full object-contain'
-            unoptimized={image.endsWith('.svg')}
-          />
-        </div>
-      </div>
-
-      <div className='flex-1 min-w-0'>
-        <h3 className='font-medium text-sm text-slate-900 dark:text-white line-clamp-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors'>
-          <span className='whitespace-nowrap'>{title}</span>
-        </h3>
-
-        <p className='text-xs text-slate-600 dark:text-slate-400 line-clamp-2 mt-0.5'>
-          {description}
-        </p>
-
-        <div className='flex items-center gap-2 mt-1.5 text-xs'>
-          <div className='flex items-center gap-0.5'>
-            <Star className='h-3.5 w-3.5 fill-yellow-400 text-yellow-400' />
-            <span className='font-medium text-slate-700 dark:text-slate-300'>
-              {rating}
-            </span>
+    <Link href={`/app/${id}`} className='block'>
+      <div className='rounded-xl border bg-white dark:bg-slate-800 p-4 hover:shadow-md transition-shadow cursor-pointer group'>
+        <div className='flex gap-4'>
+          <div className='shrink-0'>
+            {!imageError ? (
+              <img
+                src={image}
+                alt={title}
+                className='w-16 h-16 rounded-lg object-cover group-hover:scale-105 transition-transform'
+                onError={() => setImageError(true)}
+              />
+            ) : (
+              <div className='w-16 h-16 bg-slate-200 dark:bg-slate-700 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform'>
+                <span className='text-xs text-slate-500'>No Image</span>
+              </div>
+            )}
           </div>
 
-          {badge && (
-            <>
-              <span className='text-slate-400 dark:text-slate-500'>•</span>
-              <span className='text-emerald-600 dark:text-emerald-400 font-medium'>
-                {badge}
+          <div className='flex-1 min-w-0'>
+            <div className='flex items-start justify-between mb-1'>
+              <h3 className='font-semibold text-slate-900 dark:text-white truncate group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors'>
+                {title}
+              </h3>
+              {badge && (
+                <span className='bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full whitespace-nowrap ml-2'>
+                  {badge}
+                </span>
+              )}
+            </div>
+
+            <div className='flex items-center mb-2'>
+              <div className='flex text-amber-400'>
+                {'★'.repeat(Math.floor(rating))}
+                {'☆'.repeat(5 - Math.floor(rating))}
+              </div>
+              <span className='text-sm text-slate-500 ml-2'>
+                {rating.toFixed(1)}
               </span>
-            </>
-          )}
+            </div>
+
+            <p className='text-sm text-slate-600 dark:text-slate-300 line-clamp-2 group-hover:text-slate-700 dark:group-hover:text-slate-200 transition-colors'>
+              {description}
+            </p>
+          </div>
         </div>
       </div>
     </Link>
   );
-};
+}

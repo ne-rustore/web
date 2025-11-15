@@ -38,7 +38,6 @@ const SignIn = () => {
 
         oneTap.on('login_success', (e: any) => {
           const { code, device_id } = e.detail;
-          console.log('VK Login success:', { code, device_id });
 
           signIn('vk', {
             code,

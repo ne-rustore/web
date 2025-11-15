@@ -23,7 +23,6 @@ export const SearchDialog = ({ open, onOpenChange }: SearchDialogProps) => {
     saveRecent(item);
     onOpenChange(false);
     setQuery('');
-    console.log('Search:', item.title);
   };
 
   const handleOpenChange = (open: boolean) => {
