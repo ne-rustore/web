@@ -2,9 +2,9 @@ pre-commit:
   parallel: true
   commands:
     linting:
-      run: pnpm lint
+      run: npm run lint
       stage_fixed: true
 
     formatting:
-      run: pnpm format
+      run: npm run format
       stage_fixed: true
