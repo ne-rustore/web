@@ -9,9 +9,9 @@ interface PageProps {
   params: Promise<{ category: string }>;
 }
 
-export async function generateStaticParams() {
+export const generateStaticParams = () => {
   return topics.map((t) => ({ category: t.id }));
-}
+};
 
 const isTopicId = (value: string): value is TopicId => {
   return topics.some((t) => t.id === value);
