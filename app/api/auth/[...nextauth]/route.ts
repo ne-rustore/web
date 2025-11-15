@@ -108,12 +108,9 @@ const authConfig: NextAuthConfig = {
   secret: process.env.NEXTAUTH_SECRET
 };
 
-// Создаем экземпляр NextAuth
 const { handlers: authHandlers, auth, signIn, signOut } = NextAuth(authConfig);
 
-// Экспортируем обработчики правильно для Next.js 16
 export const GET = authHandlers.GET;
 export const POST = authHandlers.POST;
 
-// Экспортируем остальные функции
 export { auth, signIn, signOut };

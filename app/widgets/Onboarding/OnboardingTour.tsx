@@ -56,11 +56,8 @@ export const OnboardingTour = () => {
       const selector = tourSteps[stepIndex].target;
       const element = document.querySelector(selector);
       if (element) {
-        element.classList.remove('tour-highlight');
-        requestAnimationFrame(() => {
-          element.classList.add('tour-highlight');
-          element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        });
+        element.classList.add('tour-highlight');
+        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
     },
     [removeAllHighlights]
@@ -141,6 +138,7 @@ export const OnboardingTour = () => {
         )}
       </AnimatePresence>
 
+      {/* Tour Steps */}
       <Sheet open={!showWelcome && isOpen} onOpenChange={() => {}}>
         <SheetContent
           side='bottom'
@@ -195,109 +193,48 @@ export const OnboardingTour = () => {
         </SheetContent>
       </Sheet>
 
+      {/* УЛУЧШЕННАЯ ПОДСВЕТКА */}
       <style jsx global>{`
         .tour-highlight {
           position: relative;
-          z-index: 50;
-          border: 4px solid #3b82f6 !important;
+          z-index: 40;
+          outline: 6px solid rgba(59, 130, 246, 0.6);
           border-radius: 16px;
           box-shadow:
-            0 0 0 9999px rgba(0, 0, 0, 0.5),
-            /* фон затемнения */ 0 0 0 8px rgba(59, 130, 246, 0.6),
-            0 0 40px rgba(59, 130, 246, 0.8),
-            0 0 80px rgba(59, 130, 246, 0.6),
-            0 0 120px rgba(59, 130, 246, 0.4),
-            inset 0 0 20px rgba(255, 255, 255, 0.3);
+            0 0 0 9999px rgba(0, 0, 0, 0.6),
+            0 0 60px rgba(59, 130, 246, 0.5),
+            0 0 120px rgba(59, 130, 246, 0.3);
           animation:
-            highlight-burst 0.6s ease-out forwards,
-            glow-pulse 2s infinite,
+            pulse-outline 2s infinite,
             scale-pulse 1.5s infinite alternate;
           transform-origin: center;
-          transition: all 0.2s ease;
         }
 
-        /* Вспышка при появлении */
-        @keyframes highlight-burst {
-          0% {
-            border-color: #60a5fa;
-            box-shadow:
-              0 0 0 9999px rgba(0, 0, 0, 0.5),
-              0 0 0 8px rgba(59, 130, 246, 0),
-              0 0 0 rgba(59, 130, 246, 0),
-              0 0 0 rgba(59, 130, 246, 0),
-              0 0 0 rgba(59, 130, 246, 0),
-              inset 0 0 0 rgba(255, 255, 255, 0);
-            transform: scale(0.98);
-          }
-          50% {
-            border-color: #93c5fd;
-            box-shadow:
-              0 0 0 9999px rgba(0, 0, 0, 0.5),
-              0 0 0 12px rgba(59, 130, 246, 1),
-              0 0 60px rgba(59, 130, 246, 1),
-              0 0 120px rgba(59, 130, 246, 0.8),
-              0 0 160px rgba(59, 130, 246, 0.6),
-              inset 0 0 30px rgba(255, 255, 255, 0.5);
-            transform: scale(1.02);
-          }
-          100% {
-            border-color: #3b82f6;
-            box-shadow:
-              0 0 0 9999px rgba(0, 0, 0, 0.5),
-              0 0 0 8px rgba(59, 130, 246, 0.6),
-              0 0 40px rgba(59, 130, 246, 0.8),
-              0 0 80px rgba(59, 130, 246, 0.6),
-              0 0 120px rgba(59, 130, 246, 0.4),
-              inset 0 0 20px rgba(255, 255, 255, 0.3);
-            transform: scale(1);
-          }
-        }
-
-        /* Пульсация свечения */
-        @keyframes glow-pulse {
+        @keyframes pulse-outline {
           0%,
           100% {
+            outline-color: rgba(59, 130, 246, 0.6);
             box-shadow:
-              0 0 0 9999px rgba(0, 0, 0, 0.5),
-              0 0 0 8px rgba(59, 130, 246, 0.6),
-              0 0 40px rgba(59, 130, 246, 0.8),
-              0 0 80px rgba(59, 130, 246, 0.6),
-              0 0 120px rgba(59, 130, 246, 0.4),
-              inset 0 0 20px rgba(255, 255, 255, 0.3);
+              0 0 0 9999px rgba(0, 0, 0, 0.6),
+              0 0 60px rgba(59, 130, 246, 0.5),
+              0 0 120px rgba(59, 130, 246, 0.3);
           }
           50% {
+            outline-color: rgba(59, 130, 246, 0.9);
             box-shadow:
-              0 0 0 0 rgba(0, 0, 0, 0.5),
-              0 0 0 10px rgba(59, 130, 246, 0.9),
-              0 0 60px rgba(59, 130, 246, 1),
-              0 0 100px rgba(59, 130, 246, 0.8),
-              0 0 140px rgba(59, 130, 246, 0.6),
-              inset 0 0 30px rgba(255, 255, 255, 0.5);
+              0 0 0 9999px rgba(0, 0, 0, 0.7),
+              0 0 80px rgba(59, 130, 246, 0.7),
+              0 0 160px rgba(59, 130, 246, 0.5);
           }
         }
 
-        /* Лёгкое масштабирование */
         @keyframes scale-pulse {
           from {
             transform: scale(1);
           }
           to {
-            transform: scale(1.02);
+            transform: scale(1.03);
           }
-        }
-
-        /* Опционально: подсветка текста внутри */
-        .tour-highlight * {
-          position: relative;
-          z-index: 51;
-          color: #1e293b !important;
-          text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
-        }
-
-        .tour-highlight input,
-        .tour-highlight button,
-        .tour-highlight [role='button'] {
-          filter: brightness(1.1) !important;
         }
       `}</style>
     </>
