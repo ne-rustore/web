@@ -1,5 +1,7 @@
 import './styles/globals.css';
 
+import { Footer } from './widgets';
+
 const RootLayout = ({
   children,
 }: Readonly<{
@@ -7,7 +9,10 @@ const RootLayout = ({
 }>) => {
   return (
     <html lang='ru'>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 };
