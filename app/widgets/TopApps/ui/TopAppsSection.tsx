@@ -13,7 +13,10 @@ interface TopAppsSectionProps {
   title?: string;
 }
 
-export const TopAppsSection = ({ category, title }: TopAppsSectionProps) => {
+export const TopAppsSection = ({
+  category,
+  title = 'Приложения'
+}: TopAppsSectionProps) => {
   const filteredApps = category
     ? topApps.filter((app) =>
         (app.categories as readonly string[]).includes(category)

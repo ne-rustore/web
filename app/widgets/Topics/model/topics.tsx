@@ -6,9 +6,11 @@ import {
   Dumbbell,
   FileText,
   GraduationCap,
-  Grid3X3,
+  Hammer,
   Heart,
+  MessageCircle,
   Plane,
+  Sparkle,
   Stethoscope
 } from 'lucide-react';
 
@@ -16,53 +18,76 @@ export const topics = [
   {
     id: 'interesting',
     label: 'Интересное',
-    icon: <Grid3X3 className='h-4 w-4' />
+    icon: <Sparkle className='h-4 w-4 text-rose-500' />
   },
-  { id: 'all', label: 'Все приложения', icon: <Grid3X3 className='h-4 w-4' /> },
-  { id: 'finance', label: 'Финансы', icon: <Coins className='h-4 w-4' /> },
+  {
+    id: 'finance',
+    label: 'Финансы',
+    icon: <Coins className='h-4 w-4 text-emerald-600' />
+  },
   {
     id: 'government',
     label: 'Государственные',
-    icon: <FileText className='h-4 w-4' />
+    icon: <FileText className='h-4 w-4 text-blue-600' />
   },
   {
     id: 'tools',
     label: 'Полезные инструменты',
-    icon: <Briefcase className='h-4 w-4' />
+    icon: <Hammer className='h-4 w-4 text-indigo-500' />
   },
-  { id: 'transport', label: 'Транспорт', icon: <Car className='h-4 w-4' /> },
+  {
+    id: 'transport',
+    label: 'Транспорт',
+    icon: <Car className='h-4 w-4 text-orange-500' />
+  },
   {
     id: 'business',
     label: 'Бизнес-сервисы',
-    icon: <Briefcase className='h-4 w-4' />
+    icon: <Briefcase className='h-4 w-4 text-sky-600' />
   },
   {
     id: 'health',
     label: 'Здоровье',
-    icon: <Stethoscope className='h-4 w-4' />
+    icon: <Stethoscope className='h-4 w-4 text-red-500' />
   },
-  { id: 'travel', label: 'Путешествия', icon: <Plane className='h-4 w-4' /> },
+  {
+    id: 'travel',
+    label: 'Путешествия',
+    icon: <Plane className='h-4 w-4 text-cyan-500' />
+  },
   {
     id: 'education',
     label: 'Образование',
-    icon: <GraduationCap className='h-4 w-4' />
+    icon: <GraduationCap className='h-4 w-4 text-purple-600' />
   },
-  { id: 'books', label: 'Книги', icon: <BookOpen className='h-4 w-4' /> },
+  {
+    id: 'books',
+    label: 'Книги',
+    icon: <BookOpen className='h-4 w-4 text-amber-600' />
+  },
   {
     id: 'lifestyle',
     label: 'Образ жизни',
-    icon: <Heart className='h-4 w-4' />
+    icon: <Heart className='h-4 w-4 text-pink-500' />
   },
-  { id: 'sport', label: 'Спорт', icon: <Dumbbell className='h-4 w-4' /> },
+  {
+    id: 'sport',
+    label: 'Спорт',
+    icon: <Dumbbell className='h-4 w-4 text-lime-600' />
+  },
   {
     id: 'communication',
     label: 'Общение',
-    icon: <Grid3X3 className='h-4 w-4' />
+    icon: <MessageCircle className='h-4 w-4 text-violet-500' />
   },
-  { id: 'shopping', label: 'Покупки', icon: <Briefcase className='h-4 w-4' /> },
+  {
+    id: 'shopping',
+    label: 'Покупки',
+    icon: <Briefcase className='h-4 w-4 text-teal-600' />
+  },
   {
     id: 'marketplace',
     label: 'Маркетплейсы',
-    icon: <Briefcase className='h-4 w-4' />
+    icon: <Briefcase className='h-4 w-4 text-yellow-500' />
   }
 ] as const;
