@@ -1,6 +1,8 @@
+import './styles/reset.css';
 import './styles/globals.css';
 
-import { Footer } from './widgets';
+import { ThemeProvider } from '@/features/theme-toggle/lib/ThemeProvider';
+import { Footer, Header } from './widgets';
 
 const RootLayout = ({
   children,
@@ -8,10 +10,18 @@ const RootLayout = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <html lang='ru'>
+    <html lang='ru' suppressHydrationWarning>
       <body>
-        {children}
-        <Footer />
+        <ThemeProvider
+          attribute='class'
+          defaultTheme='light'
+          enableSystem={false}
+          disableTransitionOnChange
+        >
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

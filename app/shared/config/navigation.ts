@@ -5,6 +5,21 @@ interface FooterSection {
   links: SocialLink[];
 }
 
+export const NAVIGATION_ITEMS: SocialLink[] = [
+  {
+    href: '#',
+    name: 'Приложения',
+  },
+  {
+    href: '#',
+    name: 'Игры',
+  },
+  {
+    href: '#',
+    name: 'Блог',
+  },
+] as const;
+
 export const FOOTER_SECTIONS: FooterSection[] = [
   {
     title: 'О RUSTORE',

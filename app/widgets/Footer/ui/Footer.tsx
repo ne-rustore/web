@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
-import { getCopyright } from '../lib/copyright';
-import { FOOTER_SECTIONS } from '../lib/routes';
+import { FOOTER_SECTIONS } from '@/shared/config/';
+import { getCopyright } from '@/shared/lib/copyright';
 
 export const Footer = () => {
   return (
