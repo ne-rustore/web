@@ -1,5 +1,11 @@
-const Home = () => {
-  return <h1 className='text-3xl font-bold underline'> Hello world! </h1>;
-};
+import { HeroSection, TopAppsSection, TopicsSection } from '@/widgets';
 
-export default Home;
+export default function Home() {
+  return (
+    <main className='min-h-screen bg-white dark:bg-slate-900'>
+      <HeroSection />
+      <TopicsSection />
+      <TopAppsSection />
+    </main>
+  );
+}

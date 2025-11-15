@@ -1,4 +1,3 @@
-import './styles/reset.css';
 import './styles/globals.css';
 
 import type React from 'react';
@@ -21,7 +20,7 @@ const RootLayout = ({
           disableTransitionOnChange
         >
           <Header />
-          <main>{children}</main>
+          <div className='container mx-auto px-4 py-6'>{children}</div>
           <Footer />
         </ThemeProvider>
       </body>
