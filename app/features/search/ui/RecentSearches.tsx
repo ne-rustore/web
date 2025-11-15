@@ -1,18 +1,19 @@
+import type { SearchItem } from '../types';
+
 import { Clock } from 'lucide-react';
 
 import { Button } from '@/shared/ui';
-import { SearchItem } from '../types';
 
 interface RecentSearchesProps {
   items: SearchItem[];
-  onSelect: (item: SearchItem) => void;
+  onSelect: (_item: SearchItem) => void;
   onClear: () => void;
 }
 
 export const RecentSearches = ({
   items,
   onSelect,
-  onClear,
+  onClear
 }: RecentSearchesProps) => {
   if (items.length === 0) return null;
 

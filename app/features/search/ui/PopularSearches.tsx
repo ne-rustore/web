@@ -1,11 +1,12 @@
+import type { SearchItem } from '../types';
+
 import { TrendingUp } from 'lucide-react';
 
 import { Button } from '@/shared/ui';
-import { SearchItem } from '../types';
 
 interface PopularSearchesProps {
   items: SearchItem[];
-  onSelect: (item: SearchItem) => void;
+  onSelect: (_item: SearchItem) => void;
 }
 
 export const PopularSearches = ({ items, onSelect }: PopularSearchesProps) => (

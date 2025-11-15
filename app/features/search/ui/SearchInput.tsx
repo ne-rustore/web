@@ -4,14 +4,14 @@ import { Input } from '@/shared/ui';
 
 interface SearchInputProps {
   value: string;
-  onChange: (value: string) => void;
+  onChange: (_value: string) => void;
   placeholder?: string;
 }
 
 export const SearchInput = ({
   value,
   onChange,
-  placeholder,
+  placeholder
 }: SearchInputProps) => (
   <div className='relative py-4'>
     <Search className='absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400' />

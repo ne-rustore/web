@@ -1,16 +1,17 @@
 'use client';
 
-import { Menu, Search, X } from 'lucide-react';
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+
+import { Menu, Search, X } from 'lucide-react';
 
 import {
   NotificationBell,
   ProfileButton,
   SearchDialog,
   SearchTrigger,
-  ThemeToggle,
+  ThemeToggle
 } from '@/features';
 import { LOGO, NAVIGATION_ITEMS } from '@/shared/config';
 import { Button, Sheet, SheetContent, SheetTrigger } from '@/shared/ui';

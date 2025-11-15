@@ -1,6 +1,7 @@
+import type { SearchItem } from '../types';
+
 import { useEffect, useRef, useState } from 'react';
 
-import { SearchItem } from '../types';
 import { DEBOUNCE_DELAY, mockSearch } from './constants';
 
 export const useSearch = () => {
@@ -18,11 +19,11 @@ export const useSearch = () => {
   const [results, setResults] = useState<SearchItem[]>([]);
   const [loading, setLoading] = useState(false);
   const mounted = useRef(true);
+  // eslint-disable-next-line no-undef
   const debounceTimer = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     if (!mounted.current) return;
-
     if (debounceTimer.current) clearTimeout(debounceTimer.current);
 
     if (!query.trim()) {
@@ -57,7 +58,7 @@ export const useSearch = () => {
   const saveRecent = (item: SearchItem) => {
     const newRecent = [item, ...recent.filter((i) => i.id !== item.id)].slice(
       0,
-      5,
+      5
     );
     setRecent(newRecent);
     try {
@@ -83,6 +84,6 @@ export const useSearch = () => {
     loading,
     recent,
     saveRecent,
-    clearRecent,
+    clearRecent
   };
 };

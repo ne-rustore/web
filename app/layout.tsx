@@ -1,11 +1,13 @@
 import './styles/reset.css';
 import './styles/globals.css';
 
+import type React from 'react';
+
 import { ThemeProvider } from '@/features/theme-toggle/lib/ThemeProvider';
 import { Footer, Header } from './widgets';
 
 const RootLayout = ({
-  children,
+  children
 }: Readonly<{
   children: React.ReactNode;
 }>) => {

@@ -1,9 +1,10 @@
 'use client';
 
+import type { SearchItem } from '../types';
+
 import { Dialog, DialogContent } from '@/shared/ui';
 import { POPULAR_SEARCHES } from '../lib/constants';
 import { useSearch } from '../lib/useSearch';
-import { SearchItem } from '../types';
 import { PopularSearches } from './PopularSearches';
 import { RecentSearches } from './RecentSearches';
 import { SearchInput } from './SearchInput';
@@ -11,7 +12,7 @@ import { SearchResults } from './SearchResults';
 
 interface SearchDialogProps {
   open: boolean;
-  onOpenChange: (open: boolean) => void;
+  onOpenChange: (_open: boolean) => void;
 }
 
 export const SearchDialog = ({ open, onOpenChange }: SearchDialogProps) => {

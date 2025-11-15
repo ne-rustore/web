@@ -1,16 +1,17 @@
+import type { SearchItem } from '../types';
+
 import { Button } from '@/shared/ui';
-import { SearchItem } from '../types';
 
 interface SearchResultsProps {
   items: SearchItem[];
   loading: boolean;
-  onSelect: (item: SearchItem) => void;
+  onSelect: (_item: SearchItem) => void;
 }
 
 export const SearchResults = ({
   items,
   loading,
-  onSelect,
+  onSelect
 }: SearchResultsProps) => {
   if (loading) {
     return <div className='text-center text-slate-500 py-8'>Поиск...</div>;
