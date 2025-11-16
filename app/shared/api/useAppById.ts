@@ -12,7 +12,7 @@ const fetchAppById = async (id: number): Promise<Application> => {
 
 export function useAppById(id: number) {
   return useQuery({
-    queryKey: ['app', id],
+    queryKey: ['application', id],
     queryFn: () => fetchAppById(id),
     enabled: !!id
   });

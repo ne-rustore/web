@@ -5,7 +5,7 @@ import { useParams } from 'next/navigation';
 
 import { cn } from '@/shared/lib/utils';
 import { Button } from '@/shared/ui';
-import { topics } from '../model/topics';
+import { topics } from '../model/topics-data';
 
 interface TopicsSectionProps {
   currentCategory?: string;

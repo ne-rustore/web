@@ -3,9 +3,7 @@
 import type { SearchItem } from '../types';
 
 import { Dialog, DialogContent } from '@/shared/ui';
-import { POPULAR_SEARCHES } from '../lib/constants';
 import { useSearch } from '../lib/useSearch';
-import { PopularSearches } from './PopularSearches';
 import { RecentSearches } from './RecentSearches';
 import { SearchInput } from './SearchInput';
 import { SearchResults } from './SearchResults';
@@ -56,10 +54,6 @@ export const SearchDialog = ({ open, onOpenChange }: SearchDialogProps) => {
                 items={recent}
                 onSelect={handleSelect}
                 onClear={clearRecent}
-              />
-              <PopularSearches
-                items={POPULAR_SEARCHES.slice(0, 6)}
-                onSelect={handleSelect}
               />
             </div>
           )}

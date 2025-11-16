@@ -1,3 +1,5 @@
+'use client';
+
 export const OnboardingSection = () => {
   return (
     <section className='py-12 px-4' data-tour='hero'>

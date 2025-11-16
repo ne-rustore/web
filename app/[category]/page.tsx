@@ -1,15 +1,16 @@
-import type { TopicId } from '@/widgets/Topics';
+import type { TopicId } from '@/widgets/Topics/model/topics-data';
 
 import { notFound } from 'next/navigation';
 
 import { HeroSection, TopAppsSection, TopicsSection } from '@/widgets';
-import { topics } from '@/widgets/Topics';
+import { topics } from '@/widgets/Topics/model/topics-data';
 
 interface PageProps {
   params: Promise<{ category: string }>;
 }
 
 export const generateStaticParams = () => {
+  if (!Array.isArray(topics)) return [];
   return topics.map((t) => ({ category: t.id }));
 };
 
@@ -19,7 +20,6 @@ const isTopicId = (value: string): value is TopicId => {
 
 const CategoryPage = async ({ params }: PageProps) => {
   const { category } = await params;
-
   if (!isTopicId(category)) notFound();
 
   const currentTopic = topics.find((t) => t.id === category)!;

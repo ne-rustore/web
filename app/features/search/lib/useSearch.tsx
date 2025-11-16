@@ -2,88 +2,47 @@ import type { SearchItem } from '../types';
 
 import { useEffect, useRef, useState } from 'react';
 
-import { DEBOUNCE_DELAY, mockSearch } from './constants';
+import { useSearchStore } from '@/store/searchStore';
+import { searchApps } from './api';
+import { DEBOUNCE_DELAY } from './constants';
 
 export const useSearch = () => {
-  const [recent, setRecent] = useState<SearchItem[]>(() => {
-    if (typeof window === 'undefined') return [];
-    try {
-      const saved = localStorage.getItem('recent-searches');
-      return saved ? JSON.parse(saved) : [];
-    } catch {
-      return [];
-    }
-  });
+  const { recent, saveRecent, clearRecent } = useSearchStore();
 
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<SearchItem[]>([]);
   const [loading, setLoading] = useState(false);
+
   const mounted = useRef(true);
-  // eslint-disable-next-line no-undef
-  const debounceTimer = useRef<NodeJS.Timeout | null>(null);
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     if (!mounted.current) return;
-    if (debounceTimer.current) clearTimeout(debounceTimer.current);
+    if (timer.current) clearTimeout(timer.current);
 
     if (!query.trim()) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setResults([]);
+      setLoading(false);
       return;
     }
 
-    setLoading(true);
-
-    debounceTimer.current = setTimeout(async () => {
+    timer.current = setTimeout(async () => {
+      setLoading(true);
       try {
-        const data = await mockSearch(query);
-        if (mounted.current) {
-          setResults(data);
-          setLoading(false);
-        }
+        const data = await searchApps(query);
+        if (mounted.current) setResults(data);
       } catch {
-        if (mounted.current) {
-          setResults([]);
-          setLoading(false);
-        }
+        if (mounted.current) setResults([]);
+      } finally {
+        if (mounted.current) setLoading(false);
       }
     }, DEBOUNCE_DELAY);
 
     return () => {
       mounted.current = false;
-      if (debounceTimer.current) clearTimeout(debounceTimer.current);
+      if (timer.current) clearTimeout(timer.current);
     };
   }, [query]);
 
-  const saveRecent = (item: SearchItem) => {
-    const newRecent = [item, ...recent.filter((i) => i.id !== item.id)].slice(
-      0,
-      5
-    );
-    setRecent(newRecent);
-    try {
-      localStorage.setItem('recent-searches', JSON.stringify(newRecent));
-    } catch (e) {
-      console.error('Failed to save recent search', e);
-    }
-  };
-
-  const clearRecent = () => {
-    setRecent([]);
-    try {
-      localStorage.removeItem('recent-searches');
-    } catch (e) {
-      console.error('Failed to clear recent searches', e);
-    }
-  };
-
-  return {
-    query,
-    setQuery,
-    results,
-    loading,
-    recent,
-    saveRecent,
-    clearRecent
-  };
+  return { query, setQuery, results, loading, recent, saveRecent, clearRecent };
 };

@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
+import { AnimatedStar } from '@/shared/ui';
+
 interface AppCardProps {
   id: string;
   title: string;
@@ -24,7 +26,7 @@ export function AppCard({
   const [imageError, setImageError] = useState(false);
 
   return (
-    <Link href={`/app/${id}`} className='block'>
+    <Link href={`/application/${id}`} className='block'>
       <div className='rounded-xl border bg-white dark:bg-slate-800 p-4 hover:shadow-md transition-shadow cursor-pointer group'>
         <div className='flex gap-4'>
           <div className='shrink-0'>
@@ -55,9 +57,14 @@ export function AppCard({
             </div>
 
             <div className='flex items-center mb-2'>
-              <div className='flex text-amber-400'>
-                {'★'.repeat(Math.floor(rating))}
-                {'☆'.repeat(5 - Math.floor(rating))}
+              <div className='flex'>
+                {[...Array(5)].map((_, index) => (
+                  <AnimatedStar
+                    key={index}
+                    filled={index < Math.floor(rating)}
+                    size={16}
+                  />
+                ))}
               </div>
               <span className='text-sm text-slate-500 ml-2'>
                 {rating.toFixed(1)}
